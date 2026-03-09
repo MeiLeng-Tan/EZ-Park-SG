@@ -2,12 +2,10 @@ const API_KEY = 'v2:c18e92ffdbf73daa34791f238e88238435f8b27a9e915b8bd58df03a0029
 const CP_AVAIL_URL = "https://api.data.gov.sg/v1/transport/carpark-availability"; 
 const CP_DATA_URL = "https://data.gov.sg/api/action/datastore_search?resource_id=d_23f946fa557947f93a8043bbef41dd09&limit=2500";
 
-const AIRTABLE_TOKEN="pat8HdnQLSQS9Kreg.6d93c1d483ad54392ecca8a99dddabac1391c29de48d9c5c442739fd047c610f"
+const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN;
 const AIRTABLE_BASE_ID="appp4vOAyvwG6nToW"
 const AIRTABLE_TABLE_NAME = "Favorites";
 const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`;
-
-const AIRTABLE_TOKEN_BU = 'pat8HdnQLSQS9Kreg.6d93c1d483ad54392ecca8a99dddabac1391c29de48d9c5c442739fd047c610f';
 
 
 const getCarparkData = async () => {
