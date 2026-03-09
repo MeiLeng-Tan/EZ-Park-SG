@@ -1,0 +1,29 @@
+info:
+  name: POST-Airtable_Favorites
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: https://api.airtable.com/v0/appp4vOAyvwG6nToW/Favorites
+  headers:
+    - name: Authorization
+      value: Bearer {{process.env.AIRTABLE_TOKEN}}
+  body:
+    type: json
+    data: |+
+      {
+        "fields": {
+          "carpark_no": "v",
+              "gantry_height": "99"
+        }
+      }
+          
+
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

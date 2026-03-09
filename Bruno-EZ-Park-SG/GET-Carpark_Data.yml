@@ -1,0 +1,25 @@
+info:
+  name: GET-Carpark_Data
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: https://data.gov.sg/api/action/datastore_search?resource_id=d_23f946fa557947f93a8043bbef41dd09&limit=2500
+  headers:
+    - name: X-API-Key
+      value: v2:c18e92ffdbf73daa34791f238e88238435f8b27a9e915b8bd58df03a0029a2fb:2PEISlu75MBbXAa-XnqRuSXstDY4oNNg
+  params:
+    - name: resource_id
+      value: d_23f946fa557947f93a8043bbef41dd09
+      type: query
+    - name: limit
+      value: "2500"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
