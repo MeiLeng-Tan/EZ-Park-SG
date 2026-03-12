@@ -3,7 +3,7 @@ import * as CarparkService from "../services/carparkService";
 import CarparkCard from "./CarParkCard";
 
 const Favorites = (props) => {
-  const [favorites, setFavorites] = useState([]);
+  //const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     const fetchFavorites = async () => {
@@ -18,28 +18,28 @@ const Favorites = (props) => {
           availability_info: liveAvail ? liveAvail.carpark_info : [],
         };
       });
-      setFavorites(favoriteCarparksLiveAvail);
+      // props.setFavoriteCarparks(favoriteCarparks);
     };
     fetchFavorites();
   }, []);
 
-  const handleFavorites = (carpark) => {
-    setFavorites(
-      favorites.filter((fav) => fav.carpark_no !== carpark.carpark_no),
-    );
-    CarparkService.deleteFavorites(carpark.airtableId);
-  };
+  //   const handleFavorites = (carpark) => {
+  //     setFavorites(
+  //       favorites.filter((fav) => fav.carpark_no !== carpark.carpark_no),
+  //     );
+  //     CarparkService.deleteFavorites(carpark.airtableId);
+  //   };
 
   return (
     <>
-      {favorites.length > 0 ? (
+      {props.favoriteCarparks.length > 0 ? (
         <ul>
-          {favorites.map((cp) => (
+          {props.favoriteCarparks.map((cp) => (
             <CarparkCard
               key={cp.airtableId}
               carpark={cp}
               isFavorite={true}
-              handleFavorites={handleFavorites}
+              handleFavorites={props.handleFavorites}
             />
           ))}
         </ul>

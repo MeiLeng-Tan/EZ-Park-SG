@@ -3,14 +3,27 @@ import "./App.css";
 import * as CarparkService from "./services/carparkService";
 import CarparkSearch from "./components/CarparkSearch";
 import CarparkList from "./components/CarparkList";
-import Navbar from "./components/NavBar";
+import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router";
 import Favorites from "./components/Favourites";
 
-// src/App.jsx
 const App = () => {
   const [displayedCarparks, setDisplayedCarparks] = useState({});
-  const [favorites, setFavorites] = useState([]);
+  const [favoriteCarparks, setFavoriteCarparks] = useState([]);
+
+  //Read initial state from Airtable
+  useEffect(() => {
+    const fetchAirtableData = async () => {
+      try {
+        const data = await CarparkService.getFavorites();
+        console.log("fetch fav data", data);
+        setFavoriteCarparks(data);
+      } catch (error) {
+        console.error("Failed to fetch favorite carparks data: ", error);
+      }
+    };
+    fetchAirtableData();
+  }, []);
 
   const handleCarparkSearch = async (searchData) => {
     //Fetch carpark data
@@ -63,13 +76,29 @@ const App = () => {
     fetchCarparkData();
   };
 
-  const handleFavorites = (carpark) => {
-    const isAlreadyFavorite = favorites.some(
-      (fav) => fav.car_park_no === carpark.carpark_no,
+  const handleFavorites = async (carpark) => {
+    const existingFavorite = favoriteCarparks.find(
+      (fav) => fav.carpark_no === carpark.carpark_no,
     );
-    if (!isAlreadyFavorite) {
-      setFavorites([...favorites, carpark]);
-      CarparkService.addFavorites(carpark);
+    console.log("already fav", existingFavorite);
+    if (existingFavorite) {
+      console.log("fav cp", carpark);
+      setFavoriteCarparks((prev) =>
+        prev.filter((fav) => fav.carpark_no !== carpark.carpark_no),
+      );
+      if (existingFavorite.airtableId) {
+        await CarparkService.deleteFavorites(existingFavorite.airtableId);
+      } else {
+        console.log("No airtable Id found");
+      }
+    } else {
+      const response = await CarparkService.addFavorites(carpark);
+      console.log("response", response);
+      const Cp = {
+        ...carpark,
+        airtableId: response.id,
+      };
+      setFavoriteCarparks((prev) => [...prev, Cp]);
     }
   };
 
@@ -94,7 +123,11 @@ const App = () => {
         <Route
           path="/favorites"
           element={
-            <Favorites favorites={favorites} setFavorites={setFavorites} />
+            <Favorites
+              favoriteCarparks={favoriteCarparks}
+              setFavoriteCarparks={setFavoriteCarparks}
+              handleFavorites={handleFavorites}
+            />
           }
         />
       </Routes>

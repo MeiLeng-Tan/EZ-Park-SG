@@ -1,5 +1,4 @@
 const CarparkCard = (props) => {
-  
   const lotTypeString = {
     C: "Cars",
     H: "Heavy vehicles",

@@ -17,16 +17,8 @@ http:
       value: "2500"
       type: query
     - name: filters
-      value: '{"address":{"type":"ILIKE","value":"ANG MO KIO"}}'
-      type: query
-      disabled: true
-    - name: filters
       value: '{"address":{"type":"ILIKE","value":"JURONG "},"free_parking":{"type": "EQ","value":"NO"}}'
       type: query
-    - name: filters
-      value: '{"free_parking":{"type": "EQ","value":"NO"}}'
-      type: query
-      disabled: true
   auth: inherit
 
 settings:
