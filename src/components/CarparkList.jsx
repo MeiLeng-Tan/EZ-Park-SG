@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CarparkCard from "./CarParkCard";
+import CarparkCard from "./CarparkCard";
 
 const CarparkList = (props) => {
   const [carparkDetails, setCarparkDetails] = useState([]);
