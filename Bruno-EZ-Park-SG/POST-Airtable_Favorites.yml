@@ -14,8 +14,10 @@ http:
     data: |+
       {
         "fields": {
-          "carpark_no": "v",
-              "gantry_height": "99"
+          "carpark_no": "BT01",
+          "address": "Bukit Timah",
+          "gantry_height": "2.3m",
+          "free_parking": "NO"
         }
       }
           

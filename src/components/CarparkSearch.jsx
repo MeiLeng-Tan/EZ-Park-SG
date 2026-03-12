@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const initialFormData = {
   address: "",
@@ -10,10 +11,13 @@ const initialFormData = {
 const CarparkSearch = (props) => {
   const [formData, setFormData] = useState(initialFormData);
 
+  const navigate = useNavigate();
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     props.fetchData(formData);
-    //setFormData(initialFormData);
+    setFormData(initialFormData);
+    navigate("/carparks");
   };
 
   const handleChange = ({ target }) => {

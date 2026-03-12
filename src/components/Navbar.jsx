@@ -5,15 +5,13 @@ export default function Navbar() {
     <nav>
       <ul>
         <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <NavLink to="/carparks">Find Parking</NavLink>
+          <NavLink to="/">Search</NavLink>
         </li>
         <li>
-          <NavLink to="/favorites">My Favorites</NavLink>
+          <NavLink to="/carparks">Explore</NavLink>
+        </li>
+        <li>
+          <NavLink to="/favorites">Favorites</NavLink>
         </li>
       </ul>
     </nav>

@@ -5,7 +5,19 @@ info:
 
 http:
   method: GET
-  url: https://api.data.gov.sg/v1/transport/carpark-availability
+  url: https://api.data.gov.sg/v1/transport/carpark-availability?date_time=2026-03-11T20:55
+  params:
+    - name: lot_type
+      value: '"M"'
+      type: query
+      disabled: true
+    - name: carpark_number
+      value: Q81
+      type: query
+      disabled: true
+    - name: date_time
+      value: 2026-03-11T20:55
+      type: query
   auth: inherit
 
 settings:

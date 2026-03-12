@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import * as CarparkService from "../services/carparkService.js";
+import { useState } from "react";
 import CarparkCard from "./CarParkCard";
 
 const CarparkList = (props) => {
@@ -12,7 +11,7 @@ const CarparkList = (props) => {
         <ul>
           {props.carparks.map((cp) => (
             <CarparkCard
-              key={cp.car_park_no}
+              key={cp.carpark_no}
               carpark={cp}
               handleFavorites={props.handleFavorites}
             />
