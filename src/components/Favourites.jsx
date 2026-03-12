@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import * as CarparkService from "../services/carparkService";
-import CarparkCard from "./CarParkCard";
+import CarparkCard from "./CarparkCard";
 
 const Favorites = (props) => {
   //const [favorites, setFavorites] = useState([]);
