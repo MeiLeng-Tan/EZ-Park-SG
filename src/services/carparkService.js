@@ -1,5 +1,3 @@
-import { data } from "react-router";
-
 const API_KEY = 'v2:c18e92ffdbf73daa34791f238e88238435f8b27a9e915b8bd58df03a0029a2fb:2PEISlu75MBbXAa-XnqRuSXstDY4oNNg'
 const CP_AVAIL_URL = "https://api.data.gov.sg/v1/transport/carpark-availability"; 
 const CP_DATA_URL = "https://data.gov.sg/api/action/datastore_search"//?resource_id=d_23f946fa557947f93a8043bbef41dd09&limit=2500";
@@ -39,7 +37,7 @@ const getCarparkData = async (filters) => {
     const data = result.result.records;
     return data;
   } catch (error) {
-    console.log("Error in fetching carpark data: ",  error);
+    console.error("Error in fetching carpark data: ",  error);
   }
 }
 

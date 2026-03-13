@@ -35,6 +35,7 @@ export default defineConfig([
       ],
       'react/prop-types': 'off', // add this line
       'react/no-unescaped-entities': 'off', // add this line
+      'tailwindcss/classnames-order': 'warn',
     },
   },
 ])

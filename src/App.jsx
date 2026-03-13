@@ -10,13 +10,13 @@ import Favorites from "./components/Favourites";
 const App = () => {
   const [displayedCarparks, setDisplayedCarparks] = useState({});
   const [favoriteCarparks, setFavoriteCarparks] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  //Read initial state from Airtable
   useEffect(() => {
+    // Fetch favorite carparks data from Airtable
     const fetchAirtableData = async () => {
       try {
         const data = await CarparkService.getFavorites();
-        console.log("fetch fav data", data);
         setFavoriteCarparks(data);
       } catch (error) {
         console.error("Failed to fetch favorite carparks data: ", error);
@@ -26,6 +26,7 @@ const App = () => {
   }, []);
 
   const handleCarparkSearch = async (searchData) => {
+    setIsLoading(true);
     //Fetch carpark data
     const fetchCarparkData = async () => {
       const carparkData = await CarparkService.getCarparkData(searchData);
@@ -71,6 +72,7 @@ const App = () => {
           return acc;
         }, []);
         setDisplayedCarparks(availCarparks);
+        setIsLoading(false);
       }
     };
     fetchCarparkData();
@@ -80,9 +82,7 @@ const App = () => {
     const existingFavorite = favoriteCarparks.find(
       (fav) => fav.carpark_no === carpark.carpark_no,
     );
-    console.log("already fav", existingFavorite);
     if (existingFavorite) {
-      console.log("fav cp", carpark);
       setFavoriteCarparks((prev) =>
         prev.filter((fav) => fav.carpark_no !== carpark.carpark_no),
       );
@@ -93,7 +93,6 @@ const App = () => {
       }
     } else {
       const response = await CarparkService.addFavorites(carpark);
-      console.log("response", response);
       const Cp = {
         ...carpark,
         airtableId: response.id,
@@ -104,33 +103,45 @@ const App = () => {
 
   return (
     <>
-      <h1>EZ_Park SG</h1>
-      <Navbar />
-      <Routes>
-        <Route
-          path="/"
-          element={<CarparkSearch fetchData={handleCarparkSearch} />}
-        />
-        <Route
-          path="/carparks"
-          element={
-            <CarparkList
-              carparks={displayedCarparks}
-              handleFavorites={handleFavorites}
-            />
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <Favorites
-              favoriteCarparks={favoriteCarparks}
-              setFavoriteCarparks={setFavoriteCarparks}
-              handleFavorites={handleFavorites}
-            />
-          }
-        />
-      </Routes>
+      <div className="min-h-screen bg-slate-50">
+        <Navbar />
+        <main className="max-w-md mx-auto pb-20">
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-20">
+              <div className="w-10 h-10 border-4 border-slate-200 border-t-primary rounded-full animate-spin"></div>
+              <p className="mt-4 text-slate-400 font-bold text-xs uppercase tracking-widest">
+                Fetching carpark availability data...
+              </p>
+            </div>
+          ) : (
+            <Routes>
+              <Route
+                path="/"
+                element={<CarparkSearch fetchData={handleCarparkSearch} />}
+              />
+              <Route
+                path="/carparks"
+                element={
+                  <CarparkList
+                    carparks={displayedCarparks}
+                    handleFavorites={handleFavorites}
+                  />
+                }
+              />
+              <Route
+                path="/favorites"
+                element={
+                  <Favorites
+                    favoriteCarparks={favoriteCarparks}
+                    setFavoriteCarparks={setFavoriteCarparks}
+                    handleFavorites={handleFavorites}
+                  />
+                }
+              />
+            </Routes>
+          )}
+        </main>
+      </div>
     </>
   );
 };
