@@ -1,16 +1,27 @@
-# React + Vite
+# 🚗 EZ-Park SG
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EZ-Park SG simplifies the hunt for HDB parking lots by providing live availability, gantry height clearance, and fee structure.
 
-Currently, two official plugins are available:
+## 🔗 Live Deployment
+You can access the live version here:
+https://ez-park-sg.netlify.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+- Live Lot Tracking: Real-time data fetching from Data.gov.sg for HDB carpark availability.
+- Smart Search: Search by street name or postal code.
+- Lot Search Filters:
+  - Vehicle types: Filter by Car, Motocycle, Motocycle with side car, Heavy Vehicle.
+  - Gantry Height: Avoild "low-ceiling" scares for taller vehicles.
+  - Parking Fee: Search for free parking (Sundays/ Public Holidays).
+Favorites: Save your most visited carparks for quick access.
 
-## React Compiler
+## 🛠️ Tech Stack
+Frontend: React
+External APIs: Data.gov.sg Carpark Availability
+Database: Airtable (Used for storing user favorite carparks)
+Styling: Tailwind CSS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📸 Screenshots
+| Search Screen | Filtered Carparks | Favorite Carparks |
+| :---: | :---: | :---: |
+|<img src="./public/Screenshot-Search.png" width="250" /> |<img src="./public/Screenshot-Explore.png" width="250" /> |<img src="./public/Screenshot-Favorites.png" width="250" /> |
