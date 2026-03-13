@@ -16,10 +16,10 @@ https://ez-park-sg.netlify.app
 Favorites: Save your most visited carparks for quick access.
 
 ## 🛠️ Tech Stack
-Frontend: React
-External APIs: Data.gov.sg Carpark Availability
-Database: Airtable (Used for storing user favorite carparks)
-Styling: Tailwind CSS
+- Frontend: React
+- External APIs: Data.gov.sg Carpark Availability
+- Database: Airtable (Used for storing user favorite carparks)
+- Styling: Tailwind CSS
 
 ## 📸 Screenshots
 | Search Screen | Filtered Carparks | Favorite Carparks |
