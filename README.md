@@ -8,7 +8,7 @@ https://ez-park-sg.netlify.app
 
 ## ✨ Features
 - Live Lot Tracking: Real-time data fetching from Data.gov.sg for HDB carpark availability.
-- Smart Search: Search by street name or postal code.
+- Smart Search: Search by street name.
 - Lot Search Filters:
   - Vehicle types: Filter by Car, Motocycle, Motocycle with side car, Heavy Vehicle.
   - Gantry Height: Avoild "low-ceiling" scares for taller vehicles.
